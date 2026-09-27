@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  trip-planner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wander-ai-trip-planner
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - GOOGLE_GENERATIVE_AI_API_KEY=${GOOGLE_GENERATIVE_AI_API_KEY}
+    env_file:
+      - .env.local
+    restart: unless-stopped
